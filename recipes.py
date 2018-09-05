@@ -3,7 +3,7 @@ import unicodedata
 import re
 
 def remove_accents(row):
-    return "".join(c for c in unicodedata.normalize("NFD", s) if unicodedata.category(c) != "Mn"
+    return "".join(c for c in unicodedata.normalize("NFD", row) if unicodedata.category(c) != "Mn"
  
 def removeHTMLtags(row):
     encodings_to_remove = re.compile("")
@@ -17,12 +17,12 @@ def sanitize(row):
    sanitizedText = sanitizedText.replace("\t", "")
    return sanitizedText
  
- def stop_words(column):
-   cleanedColumn = column.apply(lambda x: [item for item in x if item not in stop])
+ def stop_words(row):
+   cleanedColumn = row.apply(lambda x: [item for item in x if item not in stop])
    return cleanedColumn
  
-def removePunctNum(column):
-   cleanedColumn = column.str.replace('[^\w\s]','')
+def removePunctNum(row):
+   cleanedColumn = row.str.replace('[^\w\s]','')
    cleanedColumn = cleanedColumn.str.replace('\d+', '')
    return cleanedColumn
  
