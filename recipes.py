@@ -21,6 +21,8 @@ def sanitize(row):
    cleanedColumn = column.apply(lambda x: [item for item in x if item not in stop])
    return cleanedColumn
  
- def removePunctNum(column):
+def removePunctNum(column):
    cleanedColumn = column.str.replace('[^\w\s]','')
-   cleanedColumn = cleane
+   cleanedColumn = cleanedColumn.str.replace('\d+', '')
+   return cleanedColumn
+ 
